@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Космическое пространство</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<!-- Космический фон -->
+	<div class="cosmic-background">
+		<div class="stars" id="stars"></div>
+		<div class="shooting-stars" id="shootingStars"></div>
+		<div class="nebula nebula-1"></div>
+		<div class="nebula nebula-2"></div>
+		<div class="planet"></div>
+		<div class="satellite">🛰️</div>
+	</div>
+
+	<!-- Первый текст - заголовок -->
+	<div class="cosmic-text main-title">
+		<h1>Бесконечная<br>Вселенная</h1>
+			<div class="title-glow"></div>
+	</div>
+
+	<!-- Второй текст - описание -->
+	<div class="cosmic-text description">
+		<p>Путетесвтие сквозь время и пространство</p>
+		<p>Где звёзды рождаются и умирают</p>
+		<div class="text-particles"></div>
+	</div>
+
+	<!-- Декортивные элементы -->
+	<div class="cosmic-elements">
+		<div class="floating-rock rock-1">🌌</div>
+		<div class="floating-rock rock-2">✨</div>
+		<div class="floating-rock rock-3">⭐</div>
+		<div class="energy-orb orb-1"></div>
+		<div class="energy-orb orb-2"></div>
+	</div>
+
+	<script>
+		// Создание звездного поля
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 200;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                const size = Math.random() * 3 + 1;
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                const duration = Math.random() * 4 + 2;
+                const delay = Math.random() * 5;
+                
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${left}%`;
+                star.style.top = `${top}%`;
+                star.style.animationDuration = `${duration}s`;
+                star.style.animationDelay = `${delay}s`;
+                
+                // Разные цвета звезд
+                const colors = ['#ffffff', '#ffeb3b', '#00bfff', '#ff6b6b'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                star.style.background = color;
+                
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Создание падающих звезд
+        function createShootingStars() {
+            const shootingContainer = document.getElementById('shootingStars');
+            const count = 8;
+            
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.className = 'shooting-star';
+                
+                const left = Math.random() * 100;
+                const top = Math.random() * 40;
+                const duration = Math.random() * 3 + 2;
+                const delay = Math.random() * 15;
+                
+                star.style.left = `${left}%`;
+                star.style.top = `${top}%`;
+                star.style.animationDuration = `${duration}s`;
+                star.style.animationDelay = `${delay}s`;
+                
+                shootingContainer.appendChild(star);
+            }
+        }
+
+        // Запуск при загрузке
+        document.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            createShootingStars();
+        });
+
+        // Интерактивность - движение при перемещении мыши
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 20;
+            const y = (e.clientY / window.innerHeight - 0.5) * 20;
+            
+            document.querySelector('.cosmic-background').style.transform = 
+                `translate(${x}px, ${y}px)`;
+        });
+	</script>
+</body>
+
+</html>
