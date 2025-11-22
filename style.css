@@ -1,0 +1,406 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    min-height: 100vh;
+    overflow: hidden;
+    background: #000;
+    color: white;
+}
+
+/* Космический фон */
+.cosmic-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(ellipse at center, #0a0e2a 0%, #000000 70%),
+        radial-gradient(ellipse at bottom, #1a1f4b 0%, transparent 70%);
+    z-index: -3;
+    transition: transform 0.1s ease-out;
+}
+
+/* Звездное поле */
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 4s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { 
+        opacity: 0.3;
+        transform: scale(0.8);
+    }
+    50% { 
+        opacity: 1;
+        transform: scale(1.2);
+        box-shadow: 0 0 10px currentColor;
+    }
+}
+
+/* Падающие звезды */
+.shooting-stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.shooting-star {
+    position: absolute;
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ffffff, transparent);
+    filter: blur(1px);
+    animation: shoot 15s linear infinite;
+}
+
+@keyframes shoot {
+    0% {
+        transform: translateX(-100px) translateY(0) rotate(45deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100vw) translateY(100vh) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+/* Туманности */
+.nebula {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(50px);
+    animation: nebulaFloat 40s ease-in-out infinite;
+}
+
+.nebula-1 {
+    top: 20%;
+    left: 10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(138, 43, 226, 0.4) 0%, transparent 70%);
+    animation-delay: 0s;
+}
+
+.nebula-2 {
+    bottom: 15%;
+    right: 10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0, 191, 255, 0.3) 0%, transparent 70%);
+    animation-delay: 20s;
+}
+
+@keyframes nebulaFloat {
+    0%, 100% { 
+        transform: translate(0, 0) scale(1);
+        opacity: 0.6;
+    }
+    25% { 
+        transform: translate(-40px, 30px) scale(1.1);
+        opacity: 0.8;
+    }
+    50% { 
+        transform: translate(30px, -20px) scale(1.05);
+        opacity: 0.7;
+    }
+    75% { 
+        transform: translate(-20px, -15px) scale(1.1);
+        opacity: 0.9;
+    }
+}
+
+/* Планета */
+.planet {
+    position: absolute;
+    top: 60%;
+    left: 80%;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at 30% 30%, #4a6572, #344955, #232f34);
+    border-radius: 50%;
+    box-shadow: 
+        inset -10px -10px 20px rgba(0, 0, 0, 0.5),
+        inset 5px 5px 15px rgba(255, 255, 255, 0.1);
+    animation: planetRotate 50s linear infinite;
+}
+
+.planet::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 40%;
+    width: 20px;
+    height: 40px;
+    background: rgba(52, 73, 85, 0.6);
+    border-radius: 50%;
+    transform: rotate(-25deg);
+}
+
+@keyframes planetRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Спутник */
+.satellite {
+    position: absolute;
+    top: 20%;
+    right: 15%;
+    font-size: 24px;
+    animation: satelliteOrbit 30s linear infinite;
+}
+
+@keyframes satelliteOrbit {
+    0% {
+        transform: 
+            rotate(0deg) 
+            translateX(150px) 
+            rotate(0deg);
+    }
+    100% {
+        transform: 
+            rotate(360deg) 
+            translateX(150px) 
+            rotate(-360deg);
+    }
+}
+
+/* Стили для текстов */
+.cosmic-text {
+    position: absolute;
+    text-align: center;
+    z-index: 10;
+}
+
+/* Главный заголовок */
+.main-title {
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: titleFloat 6s ease-in-out infinite;
+}
+
+.main-title h1 {
+    font-size: 5em;
+    font-weight: 300;
+    letter-spacing: 8px;
+    background: linear-gradient(45deg, #8a2be2, #00bfff, #ff6b6b, #ffeb3b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px rgba(138, 43, 226, 0.5);
+    line-height: 1.2;
+}
+
+.title-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 200px;
+    background: radial-gradient(ellipse, rgba(138, 43, 226, 0.2), transparent 70%);
+    filter: blur(40px);
+    z-index: -1;
+    animation: glowPulse 4s ease-in-out infinite;
+}
+
+@keyframes titleFloat {
+    0%, 100% { transform: translateX(-50%) translateY(0px); }
+    50% { transform: translateX(-50%) translateY(-20px); }
+}
+
+@keyframes glowPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.8; }
+}
+
+/* Описание */
+.description {
+    bottom: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: descriptionFloat 8s ease-in-out infinite;
+}
+
+.description p {
+    font-size: 1.8em;
+    margin: 15px 0;
+    opacity: 0.9;
+    background: linear-gradient(45deg, #ffffff, #bbdefb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 20px rgba(187, 222, 251, 0.3);
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+.text-particles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 100px;
+    background: radial-gradient(ellipse, rgba(187, 222, 251, 0.1), transparent 70%);
+    filter: blur(20px);
+    z-index: -1;
+}
+
+@keyframes descriptionFloat {
+    0%, 100% { transform: translateX(-50%) translateY(0px); }
+    25% { transform: translateX(-50%) translateY(-10px); }
+    75% { transform: translateX(-50%) translateY(10px); }
+}
+
+/* Декортивные элементы */
+.cosmic-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.floating-rock {
+    position: absolute;
+    font-size: 24px;
+    animation: rockFloat 15s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+}
+
+.rock-1 {
+    top: 15%;
+    left: 15%;
+    animation-delay: 0s;
+}
+
+.rock-2 {
+    top: 70%;
+    right: 20%;
+    animation-delay: 5s;
+}
+
+.rock-3 {
+    bottom: 15%;
+    left: 25%;
+    animation-delay: 10s;
+}
+
+@keyframes rockFloat {
+    0%, 100% { 
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0.7;
+    }
+    25% { 
+        transform: translate(20px, -30px) rotate(90deg);
+        opacity: 1;
+    }
+    50% { 
+        transform: translate(-15px, 20px) rotate(180deg);
+        opacity: 0.8;
+    }
+    75% { 
+        transform: translate(25px, 15px) rotate(270deg);
+        opacity: 0.9;
+    }
+}
+
+.energy-orb {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 191, 255, 0.6), transparent);
+    filter: blur(10px);
+    animation: orbPulse 6s ease-in-out infinite;
+}
+
+.orb-1 {
+    top: 40%;
+    left: 20%;
+    width: 60px;
+    height: 60px;
+    animation-delay: 0s;
+}
+
+.orb-2 {
+    bottom: 40%;
+    right: 25%;
+    width: 40px;
+    height: 40px;
+    animation-delay: 3s;
+}
+
+@keyframes orbPulse {
+    0%, 100% { 
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    50% { 
+        transform: scale(1.3);
+        opacity: 0.8;
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .main-title h1 {
+        font-size: 3em;
+        letter-spacing: 4px;
+    }
+    
+    .description p {
+        font-size: 1.3em;
+    }
+    
+    .title-glow {
+        width: 300px;
+        height: 150px;
+    }
+    
+    .planet {
+        transform: scale(0.7);
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title h1 {
+        font-size: 2.2em;
+        letter-spacing: 2px;
+    }
+    
+    .description p {
+        font-size: 1.1em;
+    }
+    
+    .title-glow {
+        width: 250px;
+        height: 120px;
+    }
+}
